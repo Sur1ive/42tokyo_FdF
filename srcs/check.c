@@ -6,11 +6,11 @@
 /*   By: yxu <yxu@student.42tokyo.jp>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/13 15:52:07 by yxu               #+#    #+#             */
-/*   Updated: 2024/01/16 13:42:42 by yxu              ###   ########.fr       */
+/*   Updated: 2024/01/16 15:46:28 by yxu              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "so_long.h"
+#include "fdf.h"
 
 /* obj_nb[exit_nb, start_nb, collectable_nb, enemy_nb] */
 int	check_map_obj(char **map, int *obj_nb, int x, int y)

@@ -1,6 +1,6 @@
 NAME	= fdf
 SRC_DIR	= ./srcs/
-SRCS	= main.c map.c check.c key.c win.c init.c life.c
+SRCS	= main.c map.c key.c win.c init.c color.c
 SRCS	:= $(addprefix $(SRC_DIR), $(SRCS))
 OBJS	= $(SRCS:.c=.o)
 LIB		= ./libft/libft.a

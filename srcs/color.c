@@ -1,35 +1,38 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   init.c                                             :+:      :+:    :+:   */
+/*   color.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: yxu <yxu@student.42tokyo.jp>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/12/19 16:49:56 by yxu               #+#    #+#             */
-/*   Updated: 2024/01/16 17:51:07 by yxu              ###   ########.fr       */
+/*   Created: 2023/12/12 16:12:31 by yxu               #+#    #+#             */
+/*   Updated: 2024/01/16 18:05:10 by yxu              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fdf.h"
 
-int	arrlen(char **arr)
+int	create_trgb(int t, int r, int g, int b)
 {
-	int	lenth;
-
-	if (arr == NULL)
-		return (0);
-	lenth = 0;
-	while (*arr++)
-		lenth++;
-	return (lenth);
+	return (t << 24 | r << 16 | g << 8 | b);
 }
 
-void	init(char ***map, t_data *data)
+int	get_t(int trgb)
 {
-	// data->cols = arrlen(map[0]);
-	data->map = map;
-	data->win = mlx_new_window(data->mlx, 1920, 1080, "FdF");
-	data->img = mlx_new_image(data->mlx, 1920, 1080);
-	data->addr = mlx_get_data_addr(data->img, &data->bits_per_pixel,
-			&data->line_length, &data->endian);
+	return ((trgb >> 24) & 0xFF);
+}
+
+int	get_r(int trgb)
+{
+	return ((trgb >> 16) & 0xFF);
+}
+
+int	get_g(int trgb)
+{
+	return ((trgb >> 8) & 0xFF);
+}
+
+int	get_b(int trgb)
+{
+	return (trgb & 0xFF);
 }

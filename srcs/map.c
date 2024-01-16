@@ -6,11 +6,11 @@
 /*   By: yxu <yxu@student.42tokyo.jp>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/28 17:04:34 by yxu               #+#    #+#             */
-/*   Updated: 2023/12/23 17:23:02 by yxu              ###   ########.fr       */
+/*   Updated: 2024/01/16 16:58:58 by yxu              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "so_long.h"
+#include "fdf.h"
 
 int	count_line(char *path)
 {
@@ -33,7 +33,7 @@ int	count_line(char *path)
 	return (nb);
 }
 
-void	check_map_load(char **map, t_data *data)
+void	check_map_load(char ***map, t_data *data)
 {
 	int	i;
 	int	rows;
@@ -55,16 +55,17 @@ void	check_map_load(char **map, t_data *data)
 	}
 }
 
-char	**read_map(char *path, t_data *data)
+char	***read_map(char *path, t_data *data)
 {
 	int		fd;
-	char	**map;
+	char	***map;
+	char	*tmp;
 	int		i;
 
 	fd = open(path, O_RDONLY);
 	if (fd == -1)
 		quit(2, "Map loading error\n", NULL);
-	map = (char **)malloc(sizeof(char *) * (data->rows + 1));
+	map = (char ***)malloc(sizeof(char *) * (data->rows + 1));
 	if (map == NULL)
 	{
 		close(fd);
@@ -73,42 +74,49 @@ char	**read_map(char *path, t_data *data)
 	map[data->rows] = NULL;
 	i = 0;
 	while (i < data->rows)
-		map[i++] = get_next_line(fd);
+	{
+		tmp = get_next_line(fd);
+		map[i++] = ft_split(tmp, ' ');
+		free(tmp);
+	}
 	close(fd);
 	check_map_load(map, data);
-	i--;
-	while (--i >= 0)
-		map[i][ft_strlen(map[i]) - 1] = '\0';
 	return (map);
 }
 
-int	print_map(char **map)
+int	print_map(char ***map)
 {
-	int	x;
+	int	i;
+	int	j;
 
 	if (map == NULL)
 		return (0);
-	x = 0;
-	while (map[x])
+	i = 0;
+	while (map[i])
 	{
-		ft_printf("%s\n", map[x]);
-		x++;
+		j = 0;
+		while (map[i][j])
+			ft_printf("%s ", map[i][j++]);
+		i++;
 	}
 	ft_printf("\n");
 	return (0);
 }
 
-int	free_map(char **map)
+int	free_map(char ***map)
 {
-	int	x;
+	int	i;
+	int	j;
 
 	if (map == NULL)
 		return (0);
-	x = 0;
-	while (map[x])
+	i = 0;
+	while (map[i])
 	{
-		free(map[x]);
-		x++;
+		j = 0;
+		while (map[i][j])
+			free(map[i][j++]);
+		free(map[i++]);
 	}
 	free(map);
 	return (0);
