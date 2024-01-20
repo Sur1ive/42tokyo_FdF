@@ -6,7 +6,7 @@
 /*   By: yxu <yxu@student.42tokyo.jp>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/19 16:28:14 by yxu               #+#    #+#             */
-/*   Updated: 2024/01/19 18:59:47 by yxu              ###   ########.fr       */
+/*   Updated: 2024/01/20 13:41:54 by yxu              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,8 +63,8 @@ t_offset	get_offset(int x_min, int x_max, int y_min, int y_max)
 	t_offset	offset;
 
 	offset.scaling = 0.8 * min(WIN_WIDTH / (x_max - x_min), WIN_HEIGHT / (y_max - y_min));
-	offset.xoffset =
-	offset.yoffset =
+	// offset.xoffset =
+	// offset.yoffset =
 	return (offset);
 }
 
@@ -81,25 +81,25 @@ int	screenctl(t_data *data)
 	offset.scaling = 30;
 	i = 0;
 	while (i < data->rows)
-	{
-		j = 0;
-		while (j < data->cols)
-		{
-			p1 = isometric(offset, j, i, ft_atoi(data->map[i][j]));
-			if (i + 1 != data->rows)
-			{
-				p2 = isometric(offset, j, i + 1, ft_atoi(data->map[i + 1][j]));
-				drawline(data, p1, p2);
-			}
-			if (j + 1 != data->cols)
-			{
-				p2 = isometric(offset, j + 1, i, ft_atoi(data->map[i][j + 1]));
-				drawline(data, p1, p2);
-			}
-			j++;
-		}
-		i++;
-	}
+	// {
+	// 	j = 0;
+	// 	while (j < data->cols)
+	// 	{
+	// 		p1 = isometric(offset, j, i, ft_atoi(data->map[i][j]));
+	// 		if (i + 1 != data->rows)
+	// 		{
+	// 			p2 = isometric(offset, j, i + 1, ft_atoi(data->map[i + 1][j]));
+	// 			drawline(data, p1, p2);
+	// 		}
+	// 		if (j + 1 != data->cols)
+	// 		{
+	// 			p2 = isometric(offset, j + 1, i, ft_atoi(data->map[i][j + 1]));
+	// 			drawline(data, p1, p2);
+	// 		}
+	// 		j++;
+	// 	}
+	// 	i++;
+	// }
 	mlx_put_image_to_window(data->mlx, data->win, data->img, 0, 0);
 	mlx_string_put(data->mlx, data->win, 10, 10, 0x00FFFFFF, "Guide:");
 	return (0);
