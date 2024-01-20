@@ -6,7 +6,7 @@
 /*   By: yxu <yxu@student.42tokyo.jp>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/12 16:12:31 by yxu               #+#    #+#             */
-/*   Updated: 2024/01/16 17:30:33 by yxu              ###   ########.fr       */
+/*   Updated: 2024/01/19 15:37:58 by yxu              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,6 +71,7 @@ int	main(int argc, char **argv)
 	// check_map(argv[1], &data);
 	mlx_key_hook(data.win, key, &data);
 	mlx_hook(data.win, 17, 0, destory_win, &data);
-	mlx_loop_hook(data.mlx, screenctl, &data);
+	// mlx_loop_hook(data.mlx, screenctl, &data);
+	screenctl(&data);
 	mlx_loop(data.mlx);
 }

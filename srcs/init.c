@@ -6,30 +6,30 @@
 /*   By: yxu <yxu@student.42tokyo.jp>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/19 16:49:56 by yxu               #+#    #+#             */
-/*   Updated: 2024/01/16 17:51:07 by yxu              ###   ########.fr       */
+/*   Updated: 2024/01/19 18:59:55 by yxu              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fdf.h"
 
-int	arrlen(char **arr)
+int	count_cols(char ***map)
 {
 	int	lenth;
 
-	if (arr == NULL)
+	if (map == NULL)
 		return (0);
 	lenth = 0;
-	while (*arr++)
+	while (map[0][lenth])
 		lenth++;
 	return (lenth);
 }
 
 void	init(char ***map, t_data *data)
 {
-	// data->cols = arrlen(map[0]);
+	data->cols = count_cols(map);
 	data->map = map;
-	data->win = mlx_new_window(data->mlx, 1920, 1080, "FdF");
-	data->img = mlx_new_image(data->mlx, 1920, 1080);
+	data->win = mlx_new_window(data->mlx, WIN_WIDTH, WIN_HEIGHT, "FdF");
+	data->img = mlx_new_image(data->mlx, WIN_WIDTH, WIN_HEIGHT);
 	data->addr = mlx_get_data_addr(data->img, &data->bits_per_pixel,
 			&data->line_length, &data->endian);
 }

@@ -6,7 +6,7 @@
 /*   By: yxu <yxu@student.42tokyo.jp>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/05 18:21:34 by yxu               #+#    #+#             */
-/*   Updated: 2024/01/16 17:53:16 by yxu              ###   ########.fr       */
+/*   Updated: 2024/01/19 18:59:05 by yxu              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,12 +22,22 @@
 # include <errno.h>
 # include <libc.h>
 
+# define ESC_KEY 53
+# define WIN_WIDTH 1920
+# define WIN_HEIGHT 1080
+
 typedef struct s_point {
 double	x;
 double	y;
 double	z;
 int		color;
 }	t_point;
+
+typedef struct s_offset {
+int	xoffset;
+int	yoffset;
+int	scaling;
+}	t_offset;
 
 typedef struct s_data {
 void	*win;
@@ -50,5 +60,10 @@ void	init(char ***map, t_data *data);
 int		print_map(char ***map);
 int		free_map(char ***map);
 void	quit(int exitflag, char *msg, t_data *data);
+int		create_trgb(int t, int r, int g, int b);
+int		get_t(int trgb);
+int		get_r(int trgb);
+int		get_g(int trgb);
+int		get_b(int trgb);
 
 #endif

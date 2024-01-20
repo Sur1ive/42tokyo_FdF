@@ -6,7 +6,7 @@
 /*   By: yxu <yxu@student.42tokyo.jp>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/16 18:01:27 by yxu               #+#    #+#             */
-/*   Updated: 2024/01/16 15:42:08 by yxu              ###   ########.fr       */
+/*   Updated: 2024/01/19 17:56:49 by yxu              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 int	key(int keycode, t_data *data)
 {
-	if (keycode == 53)
+	if (keycode == ESC_KEY)
 		quit(0, "Manual exit\n", data);
 	// if (keycode == 13 || keycode == 0 || keycode == 1 || keycode == 2)
 	// {

@@ -6,7 +6,7 @@
 /*   By: yxu <yxu@student.42tokyo.jp>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/28 17:04:34 by yxu               #+#    #+#             */
-/*   Updated: 2024/01/16 16:58:58 by yxu              ###   ########.fr       */
+/*   Updated: 2024/01/19 17:52:42 by yxu              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@ int	count_line(char *path)
 
 	fd = open(path, O_RDONLY);
 	if (fd == -1)
-		return (-1);
+		quit(2, "Map loading error\n", NULL);
 	nb = 0;
 	line = get_next_line(fd);
 	while (line)
